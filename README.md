@@ -26,7 +26,8 @@ The following pictures provides an overview of the database schema used in the T
 ![image](https://github.com/user-attachments/assets/053ba1e9-2cd8-48c9-8959-888baeba6388)
 
 ### Products:
-![image](https://github.com/user-attachments/assets/f408baf9-1469-4c86-9e99-013cd343b139)
+![image](https://github.com/user-attachments/assets/7ae0bfff-34c9-4e0c-a715-b8ef64798632)
+
 
 ## Getting Started
 
