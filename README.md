@@ -23,7 +23,7 @@ The following pictures provides an overview of the database schema used in the T
 ### Categories:
 ![image](https://github.com/user-attachments/assets/053ba1e9-2cd8-48c9-8959-888baeba6388)
 
-### Product:
+### Products:
 ![image](https://github.com/user-attachments/assets/f408baf9-1469-4c86-9e99-013cd343b139)
 
 ## Getting Started
