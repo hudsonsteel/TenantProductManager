@@ -2,6 +2,8 @@
 
 TenantProductManager is a multi-tenant web application designed to manage products and categories with support for user authentication and tenant-specific data. Built with ASP.NET Core 8 and utilizing JWT for authentication, this application provides a robust solution for managing and organizing product-related data across multiple tenants.
 
+![image](https://github.com/user-attachments/assets/164be796-5669-47bf-b9f6-91ecb3b839dc)
+
 ## Features
 
 - **Multi-Tenant Support**: Manage multiple tenants with each having its own data isolated from others.
