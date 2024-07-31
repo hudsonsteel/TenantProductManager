@@ -10,6 +10,22 @@ TenantProductManager is a multi-tenant web application designed to manage produc
 - **Inheritance of Data**: Child tenants inherit data from parent tenants but can also manage their own data.
 - **Comprehensive API Documentation**: Detailed API documentation using Swagger.
 
+## Database Schema
+
+The following pictures provides an overview of the database schema used in the TenantProductManager application:
+
+### Users:
+![image](https://github.com/user-attachments/assets/afd12797-81b4-4ce9-9fcc-0dd3fbf698c4)
+
+### Tenants
+![image](https://github.com/user-attachments/assets/a91837e7-b0f6-475d-b51f-df5535427bae)
+
+### Categories:
+![image](https://github.com/user-attachments/assets/053ba1e9-2cd8-48c9-8959-888baeba6388)
+
+### Product
+![image](https://github.com/user-attachments/assets/f408baf9-1469-4c86-9e99-013cd343b139)
+
 ## Getting Started
 
 ### Prerequisites
