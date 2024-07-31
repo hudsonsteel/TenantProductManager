@@ -17,16 +17,20 @@ TenantProductManager is a multi-tenant web application designed to manage produc
 The following pictures provides an overview of the database schema used in the TenantProductManager application:
 
 ### Users:
-![image](https://github.com/user-attachments/assets/afd12797-81b4-4ce9-9fcc-0dd3fbf698c4)
+![image](https://github.com/user-attachments/assets/586881a9-6334-408f-8a3f-d172d1c81538)
+
 
 ### Tenants:
-![image](https://github.com/user-attachments/assets/a91837e7-b0f6-475d-b51f-df5535427bae)
+![image](https://github.com/user-attachments/assets/5b8eec81-e316-4c3d-8b41-9a05abb42545)
+
 
 ### Categories:
-![image](https://github.com/user-attachments/assets/053ba1e9-2cd8-48c9-8959-888baeba6388)
+![image](https://github.com/user-attachments/assets/f8a0f66f-2c0a-48db-b851-d1ccc006ff76)
+
 
 ### Products:
-![image](https://github.com/user-attachments/assets/7ae0bfff-34c9-4e0c-a715-b8ef64798632)
+![image](https://github.com/user-attachments/assets/319900c5-b771-463e-8152-450756ddcccc)
+
 
 
 ## Getting Started
