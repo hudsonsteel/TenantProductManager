@@ -38,12 +38,13 @@ namespace TenantProductManager.Application.Services
 
             var existingCategory = await _categoryRepository.GetByIdAsync(request.CategoryId);
 
-            if (existingProduct != null)
+            if (existingCategory is null)
             {
                 throw new InvalidOperationException($"A category with the id '{request.CategoryId}' not exists.");
             }
 
             var product = _mapper.Map<Product>(request);
+
             product.TenantId = existingCategory.TenantId;
 
             var createdProduct = await _productRepository.AddAsync(product);

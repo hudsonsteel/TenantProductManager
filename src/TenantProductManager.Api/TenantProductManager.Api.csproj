@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>b64ead22-fa57-4831-ab14-8678211d4cbb</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -36,10 +37,6 @@
   <ItemGroup>
     <ProjectReference Include="..\TenantProductManager.Application\TenantProductManager.Application.csproj" />
     <ProjectReference Include="..\TenantProductManager.Infrastructure\TenantProductManager.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

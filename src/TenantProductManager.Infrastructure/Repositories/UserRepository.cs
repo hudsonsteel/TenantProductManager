@@ -13,7 +13,7 @@ namespace TenantProductManager.Infrastructure.Repositories
                 .AsNoTracking()
                 .SingleOrDefaultAsync(u => u.Name == username);
         }
-        public async Task<User> GetByUsernameOrEmailAsync(string username, string email)
+        public async Task<User?> GetByUsernameOrEmailAsync(string username, string email)
         {
             return await _context.Users
                 .Where(u => u.Name == username || u.Email == email)

@@ -15,17 +15,17 @@ namespace TenantProductManager.Infrastructure.Repositories
             _dbSet = _context.Set<TEntity>();
         }
 
-        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
+        public virtual async Task<IEnumerable<TEntity?>> GetAllAsync()
         {
-            return await _dbSet.ToListAsync();
+            return await _dbSet.AsNoTracking().ToListAsync();
         }
 
-        public virtual async Task<TEntity> GetByIdAsync(int id)
+        public virtual async Task<TEntity?> GetByIdAsync(int id)
         {
             return await _dbSet.FindAsync(id);
         }
 
-        public async Task<TEntity> AddAsync(TEntity entity)
+        public async Task<TEntity?> AddAsync(TEntity entity)
         {
             _dbSet.Add(entity);
             await _context.SaveChangesAsync();

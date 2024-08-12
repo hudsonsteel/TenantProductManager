@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace TenantProductManager.Api.Migrations
+namespace TenantProductManager.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class InitializeApp : Migration

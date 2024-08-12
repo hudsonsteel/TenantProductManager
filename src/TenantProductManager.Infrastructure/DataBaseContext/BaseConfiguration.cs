@@ -7,18 +7,16 @@ namespace TenantProductManager.Infrastructure.DataBaseContext
 {
     public abstract class BaseConfiguration<TEntity> : IEntityTypeConfiguration<TEntity> where TEntity : class, IEntity
     {
-        private readonly ITenantProvider _tenantProvider;
+        private readonly ITenantProvider? _tenantProvider;
 
-        protected BaseConfiguration(ITenantProvider tenantProvider)
+        protected BaseConfiguration(ITenantProvider tenantProvider) : this()
         {
             _tenantProvider = tenantProvider;
         }
 
-        protected BaseConfiguration()
-        {
+        protected BaseConfiguration() { }
 
-        }
-        protected int _tenantId => _tenantProvider.GetTenantId();
+        protected int? TenantId => _tenantProvider?.GetTenantId();
 
 
         public virtual void Configure(EntityTypeBuilder<TEntity> builder)

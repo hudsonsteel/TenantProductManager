@@ -69,18 +69,24 @@ namespace TenantProductManager.Application.Services
             return BCrypt.Net.BCrypt.HashPassword(password);
         }
 
-        private static bool VerifyPassword(string storedHash, string password)
+        private static bool VerifyPassword(string? storedHash, string? password)
         {
             return BCrypt.Net.BCrypt.Verify(password, storedHash);
         }
 
-        private string GenerateJwtToken(string username, bool isAdmin, int tenantId)
+        private string GenerateJwtToken(string? username, bool isAdmin, int? tenantId)
         {
+            ArgumentNullException.ThrowIfNull(username, nameof(username));
+            ArgumentNullException.ThrowIfNull(tenantId, nameof(tenantId));
+            ArgumentNullException.ThrowIfNull(_jwtSettings.SecretKey, nameof(_jwtSettings.SecretKey));
+
+            string tenantIdValue = tenantId.Value.ToString();
+
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, username),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim("tenantId", tenantId.ToString())
+                new Claim("tenantId", tenantIdValue)
             };
 
             if (isAdmin)

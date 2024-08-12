@@ -1,4 +1,5 @@
-﻿using FluentValidation.AspNetCore;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -70,14 +71,16 @@ namespace TenantProductManager.Api.Configurations
         private static void AddFluentValidationConfig(this IServiceCollection services)
         {
             services
-            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>())
-            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegisterRequestValidator>())
-            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateCategoryRequestValidator>())
-            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UpdateCategoryRequestValidator>())
-            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateProductRequestValidator>())
-            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UpdateProductRequestValidator>())
-            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateTenantRequestValidator>())
-            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UpdateTenantRequestValidator>());
+                   .AddFluentValidationAutoValidation()
+                   .AddFluentValidationClientsideAdapters()
+                   .AddValidatorsFromAssemblyContaining<LoginRequestValidator>()
+                   .AddValidatorsFromAssemblyContaining<RegisterRequestValidator>()
+                   .AddValidatorsFromAssemblyContaining<CreateCategoryRequestValidator>()
+                   .AddValidatorsFromAssemblyContaining<UpdateCategoryRequestValidator>()
+                   .AddValidatorsFromAssemblyContaining<CreateProductRequestValidator>()
+                   .AddValidatorsFromAssemblyContaining<UpdateProductRequestValidator>()
+                   .AddValidatorsFromAssemblyContaining<CreateTenantRequestValidator>()
+                   .AddValidatorsFromAssemblyContaining<UpdateTenantRequestValidator>();
         }
 
         public static void AddAutoMapperConfig(this IServiceCollection services)
@@ -91,7 +94,9 @@ namespace TenantProductManager.Api.Configurations
         {
             services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 
-            var jwtSettings = configuration.GetSection("JwtSettings").Get<JwtSettings>()!;
+            var jwtSettings = configuration.GetSection("JwtSettings").Get<JwtSettings>()
+                               ?? throw new InvalidOperationException("JwtSettings configuration is missing or invalid.");
+
 
             services.AddSingleton(jwtSettings);
 
@@ -112,6 +117,12 @@ namespace TenantProductManager.Api.Configurations
                         return Task.CompletedTask;
                     }
                 };
+
+                if (string.IsNullOrEmpty(jwtSettings.SecretKey))
+                {
+                    throw new InvalidOperationException("JWT SecretKey is not configured.");
+                }
+
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,

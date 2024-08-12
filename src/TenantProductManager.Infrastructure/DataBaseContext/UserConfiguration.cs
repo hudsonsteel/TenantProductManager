@@ -29,6 +29,9 @@ namespace TenantProductManager.Infrastructure.DataBaseContext
             builder.HasIndex(u => u.Email)
             .IsUnique();
 
+            builder.Property(u => u.TenantId)
+            .IsRequired(false);
+
             builder.HasOne(u => u.Tenant)
                .WithMany(t => t.Users)
                .HasForeignKey(u => u.TenantId)

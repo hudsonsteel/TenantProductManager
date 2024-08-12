@@ -28,7 +28,7 @@ namespace TenantProductManager.Infrastructure.DataBaseContext
            .HasForeignKey(p => p.TenantId)
            .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasQueryFilter(x => x.TenantId == _tenantId);
+            builder.HasQueryFilter(x => x.TenantId == TenantId);
 
             base.Configure(builder);
         }

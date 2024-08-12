@@ -11,19 +11,20 @@ namespace TenantProductManager.Application.Services
         private readonly ICategoryRepository _categoryRepository = categoryRepository;
         private readonly IMapper _mapper = mapper;
 
-        public async Task<IEnumerable<CategoryResponseDto>> GetAllCategoriesAsync()
+        public async Task<IEnumerable<CategoryResponseDto?>> GetAllCategoriesAsync()
         {
             var categories = await _categoryRepository.GetAllAsync();
+
             return categories.Select(c => _mapper.Map<CategoryResponseDto>(c));
         }
 
-        public async Task<CategoryResponseDto> GetCategoryByIdAsync(int id)
+        public async Task<CategoryResponseDto?> GetCategoryByIdAsync(int id)
         {
             var category = await _categoryRepository.GetByIdAsync(id);
             return category == null ? null : _mapper.Map<CategoryResponseDto>(category);
         }
 
-        public async Task<CategoryResponseDto> CreateCategoryAsync(CreateCategoryRequestDto request)
+        public async Task<CategoryResponseDto?> CreateCategoryAsync(CreateCategoryRequestDto request)
         {
             var existingCategory = await _categoryRepository.GetCategoryByNameAndTenantIdAsync(request.Name, request.TenantId);
 

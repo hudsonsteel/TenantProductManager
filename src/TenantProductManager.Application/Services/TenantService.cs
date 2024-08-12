@@ -25,6 +25,11 @@ namespace TenantProductManager.Application.Services
 
         public async Task<TenantResponseDto> CreateTenantAsync(CreateTenantRequestDto request)
         {
+            if (await _tenantRepository.ExistsByTenantIdOrRootTenantIdAsync(request.ParentTenantId, request.RootTenantId))
+            {
+                throw new InvalidOperationException("A tenant with the same TenantId and RootTenantId already exists.");
+            }
+
             var tenant = _mapper.Map<Tenant>(request);
             await _tenantRepository.AddAsync(tenant);
             return _mapper.Map<TenantResponseDto>(tenant);

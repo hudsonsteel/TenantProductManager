@@ -13,7 +13,8 @@ namespace TenantProductManager.Infrastructure.Configurations
         {
             services.Configure<DbSettings>(configuration.GetSection("DbSettings"));
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("TenantProductManager.Api")));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")
+                , b => b.MigrationsAssembly("TenantProductManager.Infrastructure")));
 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();

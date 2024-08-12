@@ -2,6 +2,6 @@
 {
     public record class DbSettings
     {
-        public string DefaultConnection { get; init; }
+        public string? DefaultConnection { get; init; }
     }
 }

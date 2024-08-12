@@ -7,7 +7,7 @@ namespace TenantProductManager.Infrastructure.Repositories
 {
     public class CategoryRepository(ApplicationDbContext context) : BaseRepository<Category>(context), ICategoryRepository
     {
-        public override async Task<IEnumerable<Category>> GetAllAsync()
+        public override async Task<IEnumerable<Category?>> GetAllAsync()
         {
             return await _dbSet
                          .Include(c => c.ParentCategory)
@@ -16,7 +16,7 @@ namespace TenantProductManager.Infrastructure.Repositories
                          .ToListAsync();
         }
 
-        public override async Task<Category> GetByIdAsync(int id)
+        public override async Task<Category?> GetByIdAsync(int id)
         {
             return await _dbSet
                          .Include(c => c.ParentCategory)
@@ -25,7 +25,7 @@ namespace TenantProductManager.Infrastructure.Repositories
                          .FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public async Task<Category> GetCategoryByNameAndTenantIdAsync(string name, int tenantId)
+        public async Task<Category?> GetCategoryByNameAndTenantIdAsync(string name, int tenantId)
         {
             return await _context.Categories
                         .Where(c => c.Name == name && c.TenantId == tenantId)

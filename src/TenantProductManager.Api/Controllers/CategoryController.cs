@@ -50,7 +50,7 @@ namespace TenantProductManager.Api.Controllers
 
             var categoryDto = _mapper.Map<CreateCategoryRequestDto>(request);
             var createdCategory = await _categoryService.CreateCategoryAsync(categoryDto);
-            return CreatedAtAction(nameof(GetCategoryById), new { id = createdCategory.Id }, createdCategory);
+            return CreatedAtAction(nameof(GetCategoryById), new { id = createdCategory?.Id }, createdCategory);
         }
 
         [Authorize]

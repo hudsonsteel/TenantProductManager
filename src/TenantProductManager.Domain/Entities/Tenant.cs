@@ -5,16 +5,16 @@ namespace TenantProductManager.Domain.Entities
     public class Tenant : IEntity
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public int? ParentTenantId { get; set; }
-        public Tenant ParentTenant { get; set; }
-        public ICollection<Tenant> Children { get; set; } = new List<Tenant>();
+        public Tenant? ParentTenant { get; set; }
+        public ICollection<Tenant> Children { get; set; } = [];
 
         public bool IsRoot { get; set; }
 
         public int? RootTenantId { get; set; }
-        public Tenant RootTenant { get; set; }
+        public Tenant? RootTenant { get; set; }
 
         public ICollection<User> Users { get; set; } = new List<User>();
 

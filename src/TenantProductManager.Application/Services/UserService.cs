@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using TenantProductManager.Application.Dtos.User;
 using TenantProductManager.Application.Interfaces.Services;
+using TenantProductManager.Domain.Entities;
 using TenantProductManager.Domain.Interfaces.Repositories;
 
 namespace TenantProductManager.Application.Services
@@ -10,6 +11,13 @@ namespace TenantProductManager.Application.Services
         private readonly IUserRepository _userRepository = userRepository;
 
         public async Task<UserResponse> GetCurrentUserAsync(ClaimsPrincipal user)
+        {
+            var userId = ExtractUserId(user);
+            var userEntity = await GetUserEntityAsync(userId);
+            return MapToUserResponse(userEntity);
+        }
+
+        private static int ExtractUserId(ClaimsPrincipal user)
         {
             var userIdString = user.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -23,6 +31,11 @@ namespace TenantProductManager.Application.Services
                 throw new InvalidOperationException("Invalid user ID format.");
             }
 
+            return userId;
+        }
+
+        private async Task<User> GetUserEntityAsync(int userId)
+        {
             var userEntity = await _userRepository.GetByIdAsync(userId);
 
             if (userEntity == null)
@@ -30,7 +43,12 @@ namespace TenantProductManager.Application.Services
                 throw new InvalidOperationException("User not found.");
             }
 
-            var userResponse = new UserResponse
+            return userEntity;
+        }
+
+        private static UserResponse MapToUserResponse(User userEntity)
+        {
+            return new UserResponse
             (
                 userEntity.Id.ToString(),
                 userEntity.Name,
@@ -38,8 +56,6 @@ namespace TenantProductManager.Application.Services
                 userEntity.TenantId,
                 userEntity.IsAdmin
             );
-
-            return userResponse;
         }
     }
 }

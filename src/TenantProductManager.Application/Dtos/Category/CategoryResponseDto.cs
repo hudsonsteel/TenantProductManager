@@ -4,7 +4,7 @@
     {
         public CategoryResponseDto(
             int id,
-            string name,
+            string? name,
             int tenantId,
             int? parentCategoryId,
             CategoryResponseDto? parentCategory,
@@ -19,7 +19,7 @@
         }
 
         public int Id { get; init; }
-        public string Name { get; init; }
+        public string? Name { get; init; }
         public int TenantId { get; init; }
         public int? ParentCategoryId { get; init; }
         public CategoryResponseDto? ParentCategory { get; init; }

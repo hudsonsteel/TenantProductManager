@@ -7,7 +7,7 @@ namespace TenantProductManager.Infrastructure.Repositories
 {
     public class ProductRepository(ApplicationDbContext context) : BaseRepository<Product>(context), IProductRepository
     {
-        public async Task<Product> GetProductByNameAndCategoryIdAsync(string name, int categoryId)
+        public async Task<Product?> GetProductByNameAndCategoryIdAsync(string name, int categoryId)
         {
             return await _context.Products
              .Where(p => p.Name == name && p.CategoryId == categoryId)
